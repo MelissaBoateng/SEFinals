@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `country` (
-  `country_id` int(11) NOT NULL,
+  `country_id` int(11) NOT NULL AUTO_INCREMENT,
   `country_name` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -39,7 +39,7 @@ CREATE TABLE `country` (
 --
 
 CREATE TABLE `fundee` (
-  `fundee_id` int(11) NOT NULL,
+  `fundee_id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(250) DEFAULT NULL,
   `Fname` varchar(250) DEFAULT NULL,
   `lname` varchar(250) DEFAULT NULL,
@@ -54,7 +54,7 @@ CREATE TABLE `fundee` (
 --
 
 CREATE TABLE `industry` (
-  `industry_id` int(11) NOT NULL,
+  `industry_id` int(11) NOT NULL AUTO_INCREMENT,
   `industry_type` varchar(250) DEFAULT NULL,
   `date` date NOT NULL,
   `status` varchar(30) DEFAULT NULL,
@@ -68,7 +68,7 @@ CREATE TABLE `industry` (
 --
 
 CREATE TABLE `investor` (
-  `investor_id` int(11) NOT NULL,
+  `investor_id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(250) DEFAULT NULL,
   `Fname` varchar(250) DEFAULT NULL,
   `lname` varchar(250) DEFAULT NULL,
@@ -83,7 +83,7 @@ CREATE TABLE `investor` (
 --
 
 CREATE TABLE `project` (
-  `project_id` int(11) NOT NULL,
+  `project_id` int(11) NOT NULL AUTO_INCREMENT,
   `project_name` varchar(250) DEFAULT NULL,
   `industry_type` varchar(255) DEFAULT NULL,
   `date` date NOT NULL,
@@ -99,9 +99,9 @@ CREATE TABLE `project` (
 --
 
 CREATE TABLE `project_tracker` (
-  `project_id` int(11) NOT NULL,
-  `fundee_id` int(11) NOT NULL,
-  `investor_id` int(11) NOT NULL,
+  `project_id` int(11) NOT NULL AUTO_INCREMENT,
+  `fundee_id` int(11) NOT NULL AUTO_INCREMENT,
+  `investor_id` int(11) NOT NULL AUTO_INCREMENT,
   `industry_type` varchar(255) DEFAULT NULL,
   `project_name` varchar(250) NOT NULL,
   `date` date NOT NULL,
