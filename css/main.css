@@ -1,0 +1,155 @@
+body {
+    background-color: 	#F5F5F5;
+}
+
+.top {
+    padding: 3%;
+}
+.form-range {
+    width: 100%;
+}
+.right {
+    float: right;
+}
+.bottom {
+    margin-top: 25px;
+}
+.project-form {
+    max-width: 60%;
+}
+
+.main-title {
+    color: #1F75FE;
+    font-size: 2.09em;
+    font-weight: 700;
+}
+
+.main-title, h4 {
+    padding-bottom: 4%;
+}
+
+.decisions {
+    padding: 0 22% 6%;
+}
+.decisions a{
+    cursor: pointer;
+}
+.decisions button > a, button.add > a {
+    color: white;
+}
+button.add > a:hover {
+    text-decoration: none;
+}
+.continue {
+    width: 100px;
+    float: right;
+    border-radius: 20px;
+    background-color: black;
+}
+
+/* mainpage */
+main{
+    padding: 2%;
+}
+img {
+    width: 100%;
+    height: 450px;
+    border-radius: 20px;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+.heading {
+    padding-left: 5%;
+}
+.center {
+    text-align: center;
+}
+.center > p {
+    font-size: 20px;
+}
+.text1, .heading {
+    color: #1F75FE;
+    font-weight: 700;
+}
+.text2 {
+    color: rgb(184, 184, 184);
+    padding-top: 12px;
+    padding-bottom: 10px;
+}
+button.start {
+    width: 200px;
+    color: white;
+    border-radius: 50px;
+    background-color: black;
+}
+.start-btn {
+    display: flex;
+    justify-content: center;
+}
+/* end of mainpage */
+
+
+/* Industries */
+main {
+    padding: 2% 10%;
+}
+.left-b {
+    width: 40%;
+}
+.right-b {
+    width: 60%;
+}
+.left-box, .right-box {
+    height: 350px;
+    padding: 6%;
+    margin: 20px 0;
+    border-radius: 10px;
+    background-color: white;
+}
+.left-box {
+    margin-right: 40px;
+}
+.i-heading {
+    color: #1F75FE;
+    font-size: 60px;
+    font-weight: 700;
+    padding-bottom: 3%;
+}
+.add {
+    width: 140px;
+    float: right;
+    color: white;
+    font-weight: 700;
+    background-color: black;
+}
+thead tr, h4 {
+    color: #1F75FE;
+}
+tbody tr td > a:hover {
+    text-decoration: none;
+}
+/* end of Industries */
+
+/* approved */
+body.approved {
+    padding-bottom: 4%;
+}
+.a-content {
+    max-width: 80%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+.r-side-box {
+    color: white;
+    padding: 2% 4%;
+    border-radius: 6px;
+    background-color: green;
+}
+.l-side-box {
+    border-radius: 6px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.save {
+    width: 8%;
+    background-color: black;
+}

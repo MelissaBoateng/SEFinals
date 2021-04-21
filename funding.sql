@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 19, 2021 at 02:18 AM
--- Server version: 10.4.16-MariaDB
--- PHP Version: 7.4.12
+-- Generation Time: Apr 21, 2021 at 10:22 PM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.4.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `country` (
-  `country_id` int(11) NOT NULL AUTO_INCREMENT,
+  `country_id` int(11) NOT NULL,
   `country_name` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -39,7 +39,7 @@ CREATE TABLE `country` (
 --
 
 CREATE TABLE `fundee` (
-  `fundee_id` int(11) NOT NULL AUTO_INCREMENT,
+  `fundee_id` int(11) NOT NULL,
   `email` varchar(250) DEFAULT NULL,
   `Fname` varchar(250) DEFAULT NULL,
   `lname` varchar(250) DEFAULT NULL,
@@ -54,7 +54,7 @@ CREATE TABLE `fundee` (
 --
 
 CREATE TABLE `industry` (
-  `industry_id` int(11) NOT NULL AUTO_INCREMENT,
+  `industry_id` int(11) NOT NULL,
   `industry_type` varchar(250) DEFAULT NULL,
   `date` date NOT NULL,
   `status` varchar(30) DEFAULT NULL,
@@ -68,7 +68,7 @@ CREATE TABLE `industry` (
 --
 
 CREATE TABLE `investor` (
-  `investor_id` int(11) NOT NULL AUTO_INCREMENT,
+  `investor_id` int(11) NOT NULL,
   `email` varchar(250) DEFAULT NULL,
   `Fname` varchar(250) DEFAULT NULL,
   `lname` varchar(250) DEFAULT NULL,
@@ -83,12 +83,14 @@ CREATE TABLE `investor` (
 --
 
 CREATE TABLE `project` (
-  `project_id` int(11) NOT NULL AUTO_INCREMENT,
+  `project_id` int(11) NOT NULL,
   `project_name` varchar(250) DEFAULT NULL,
   `industry_type` varchar(255) DEFAULT NULL,
-  `date` date NOT NULL,
+  `p_description` tinytext DEFAULT NULL,
+  `date` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `status` varchar(250) DEFAULT NULL,
-  `Net_balance` int(40) DEFAULT NULL,
+  `capital` int(40) DEFAULT NULL,
+  `payback_p` varchar(25) DEFAULT NULL,
   `country_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -99,9 +101,9 @@ CREATE TABLE `project` (
 --
 
 CREATE TABLE `project_tracker` (
-  `project_id` int(11) NOT NULL AUTO_INCREMENT,
-  `fundee_id` int(11) NOT NULL AUTO_INCREMENT,
-  `investor_id` int(11) NOT NULL AUTO_INCREMENT,
+  `project_id` int(11) NOT NULL,
+  `fundee_id` int(11) NOT NULL,
+  `investor_id` int(11) NOT NULL,
   `industry_type` varchar(255) DEFAULT NULL,
   `project_name` varchar(250) NOT NULL,
   `date` date NOT NULL,
@@ -142,6 +144,60 @@ ALTER TABLE `investor`
 --
 ALTER TABLE `project`
   ADD PRIMARY KEY (`project_id`);
+
+--
+-- Indexes for table `project_tracker`
+--
+ALTER TABLE `project_tracker`
+  ADD KEY `project_id` (`project_id`),
+  ADD KEY `fundee_id` (`fundee_id`),
+  ADD KEY `investor_id` (`investor_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `country`
+--
+ALTER TABLE `country`
+  MODIFY `country_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `fundee`
+--
+ALTER TABLE `fundee`
+  MODIFY `fundee_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `industry`
+--
+ALTER TABLE `industry`
+  MODIFY `industry_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `investor`
+--
+ALTER TABLE `investor`
+  MODIFY `investor_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `project`
+--
+ALTER TABLE `project`
+  MODIFY `project_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `project_tracker`
+--
+ALTER TABLE `project_tracker`
+  ADD CONSTRAINT `project_tracker_ibfk_1` FOREIGN KEY (`project_id`) REFERENCES `project` (`project_id`),
+  ADD CONSTRAINT `project_tracker_ibfk_2` FOREIGN KEY (`fundee_id`) REFERENCES `fundee` (`fundee_id`),
+  ADD CONSTRAINT `project_tracker_ibfk_3` FOREIGN KEY (`investor_id`) REFERENCES `investor` (`investor_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
