@@ -12,7 +12,7 @@
 </head>
 <body>
     <?php
-        $currentPage = "ideas";
+        $currentPage = "tracker";
         include("includes/nav.php");
     ?>
     <main>

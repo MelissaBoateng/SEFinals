@@ -47,7 +47,7 @@
 <body>
     <?php
         
-        $currentPage = "";
+        $currentPage = "ideas";
         include("includes/nav.php");
     ?>
     <div class="project-form top">

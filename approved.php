@@ -17,7 +17,7 @@
 <body class="approved">
     <?php 
         session_start();
-        $currentPage = "";
+        $currentPage = "ideas";
         include("includes/nav.php");
     ?>
     <div class="project-form top">

@@ -5,7 +5,7 @@
         private $host = "localhost";
         private $username = "root";
         private $password = "";
-        private $db_name = "smores";
+        private $db_name = "funding";
 
         public function connect() {
             // Create connection

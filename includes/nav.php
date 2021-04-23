@@ -20,13 +20,13 @@
             <a href="index.php" class="<?php echo $currentPage == "home" ? "active" : "" ?>">Dashboard</a>
         </li>
         <li>
-            <a href="project_arch.php" class="<?php echo $currentPage == "ideas" ? "active" : "" ?>">Ideas Page</a>
+            <a href="project_info.php" class="<?php echo $currentPage == "ideas" ? "active" : "" ?>">Ideas</a>
         </li>
         <li>
             <a href="industries.php" class="<?php echo $currentPage == "investors" ? "active" : "" ?>">Investors</a>
         </li>
         <li>
-            <a href="" class="<?php echo $currentPage == "tracker" ? "active" : "" ?>">Project Tracker</a>
+            <a href="project_arch.php" class="<?php echo $currentPage == "tracker" ? "active" : "" ?>">Project Tracker</a>
         </li>
     </ul>
 </nav>
