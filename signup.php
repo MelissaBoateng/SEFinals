@@ -79,6 +79,7 @@
                 $pass_encrypt = password_hash($password, PASSWORD_DEFAULT);
 
                 if($user == "Investor"){
+                    $_SESSION["investor"] == $user;
                     $query = "INSERT INTO investor VALUES (null, '$email', '$fname', '$lname', '$pass_encrypt', '')";
                     $execute = mysqli_query($dbase, $query);
 
@@ -97,6 +98,7 @@
                 }
                 
                 else if($user == "Investee"){
+                    $_SESSION["investee"] == $user;
                     $query1 = "INSERT INTO fundee VALUES (null, '$email', '$fname', '$lname', '$pass_encrypt', '')";
                     $execute1 = mysqli_query($dbase, $query1);
 

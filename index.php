@@ -20,11 +20,22 @@
                 </div>
                 <div class="form-group">
                     <label for="form_name">Email address</label>
-                    <input type="text" class="form-control item" id="email" name="email" placeholder="Email address">
+                    <input type="text" class="form-control item" id="email" name="email" placeholder="Email address" required>
                 </div>
                 <div class="form-group">
                     <label for="form_name">Password</label>
-                    <input type="password" class="form-control item" id="password" name="password" placeholder="Password">
+                    <input type="password" class="form-control item" id="password" name="password" placeholder="Password" required>
+                </div>
+
+                <div class="profile">
+                    <div class="user">
+                        <input type="radio" name="type" value="Investor" id="investor" required>
+                        <label for="investor">Investor</label>
+                    </div>
+                    <div class="user">
+                        <input type="radio" name="type" value="Investee" id="investee" required>
+                        <label for="investee">Investee</label>
+                    </div>
                 </div>
 
                 <div class="form-group login-btn">
@@ -52,11 +63,9 @@
             if(isset($_POST["logIn"])) {
                 $email = $_POST["email"];
                 $password = $_POST["password"];
+                $user = $_POST["type"];
 
-                if(empty($email) || empty($password)) {
-                    echo "<script> alert('All fields are required'); </script>";
-                }
-                else{
+                if($user == "Investee"){
                     $query = "SELECT * FROM fundee where email = '$email'";
                     $execute = mysqli_query($dbase, $query);
                     $user_row = mysqli_fetch_array($execute);
@@ -74,10 +83,12 @@
                             echo "<script> alert('Your password may be incorrect'); </script>";
                         }
                     }
+                }
 
-                    $query1 = "SELECT * FROM investor WHERE email = '$email'";
-                    $execute1 = mysqli_query($dbase, $query);
-                    $investor_row = mysqli_fetch_array($execute);
+                else if($user == "Investor"){
+                    $query1 = "SELECT * FROM investor WHERE investor_email = '$email'";
+                    $execute1 = mysqli_query($dbase, $query1);
+                    $investor_row = mysqli_fetch_array($execute1);
 
                     if($investor_row) {
                         $stored_p = $investor_row["password"];
@@ -95,10 +106,10 @@
                             echo "<script> alert('Your password may be incorrect'); </script>";
                         }
                     }
+                }
 
-                    else {
-                        echo "<script> alert('You don\'t have an account with us'); </script>";
-                    }
+                else {
+                    echo "<script> alert('You don\'t have an account with us'); </script>";
                 }
             }
         ?>

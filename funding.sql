@@ -46,7 +46,7 @@ CREATE TABLE `fundee` (
   `email` varchar(250) DEFAULT NULL,
   `Fname` varchar(250) DEFAULT NULL,
   `lname` varchar(250) DEFAULT NULL,
-  `password` varchar(250) NOT NULL
+  `password` varchar(550) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -78,10 +78,10 @@ CREATE TABLE `industry` (
 
 CREATE TABLE `investor` (
   `investor_id` int(11) NOT NULL,
-  `email` varchar(250) DEFAULT NULL,
+  `investor_email` varchar(250) DEFAULT NULL,
   `Fname` varchar(250) DEFAULT NULL,
   `lname` varchar(250) DEFAULT NULL,
-  `password` varchar(250) NOT NULL,
+  `password` varchar(550) NOT NULL,
   `country_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
