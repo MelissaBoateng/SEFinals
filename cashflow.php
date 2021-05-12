@@ -103,7 +103,7 @@
                 </div>
             </div>
 
-            <div class="decisions">
+            <div class="c_decisions">
                 <a class="back" href="project_info.php">Go back</a>
                 <button type="submit" class="btn continue" name="c_continue">Continue</button>
             </div>
@@ -112,9 +112,15 @@
         
     <?php
         if(isset($_POST["c_continue"])) {
+            $s_date = $_POST["startDate"];
+            $e_date = $_POST["endDate"];
+            
             $income = $_POST["incomeAmt"];
             $payback = $_POST["payback"];
 
+            $_SESSION["s_date"] = $s_date;
+            $_SESSION["e_date"] = $e_date;
+            
             $_SESSION["incomeAmt"] = $income;
             $_SESSION["payback"] = $payback;
 

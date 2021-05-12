@@ -37,7 +37,8 @@
         <div class="row justify-content-center a-content">
             <div class="col-6 l-side-box" style="margin-right: 2%;">
                 <div>
-                    <h4>Quick Figures Digest</h4>
+                    <h5><b>Quick Figures Digest</b></h5>
+                    <hr>
                 </div>
 
                 <div class="row">
@@ -58,7 +59,16 @@
                         <p><?php echo $_SESSION["payback"];?></p>
                     </div>
                 </div>
-                <h4>Business Summary</h4>
+                <div>
+                    <h4 style="padding: 0;">Business Summary</h4>
+                    <ul>
+                        <li><b>Project Name:</b> &emsp; <?php echo $_SESSION["project_name"]; ?></li>
+                        <li><b>Industry Type:</b> &emsp; <?php echo $_SESSION["industry"]; ?></li>
+                        <li><b>Brief Description:</b> &emsp; <?php echo $_SESSION["description"]; ?></li>
+                        <p></p>
+                        <li><b>Contact (Mobile Number):</b> &emsp; <?php echo $_SESSION["contact"]; ?></li>
+                    </ul>
+                </div>
             </div>
             <div class="r-side-box col-3">
                 <h4>Status: Approved</h4>
@@ -78,23 +88,21 @@
         $dbase = $conn->connect();
 
         if(isset($_POST["save"])) {
-            $project_name = $_POST["p_name"];
-            $industry = $_POST["industry"];
-            $description = $_POST["description"];
-            $s_date = $_POST["startDate"];
-            $e_date = $_POST["endDate"];
-            $neededIncome = $_POST["incomeAmt"];
-            $payback = $POST["payback"];
-
-            $query = "INSERT INTO project(project_name, industry_type, p_description, date, capital, payback_p) VALUES ('$project_name', '$industry', '$description', concat('$s_date', ' ~ ', '$e_date'), '$neededIncome', '$payback')";
+            
+            $query = "INSERT INTO project(project_name, industry_type, p_description, date, capital, payback_p) VALUES ('".$_SESSION["project_name"]."', '".$_SESSION["industry"]."', '".$_SESSION["description"]."', concat('".$_SESSION["s_date"]."', ' ~ ', '".$_SESSION["e_date"]."'), '".$_SESSION["neededIncome"]."', '".$_SESSION["payback"]."')";
             $execute = $dbase->query($query);
 
             if($execute) {
                 echo "<script> alert('Project details have been saved successfully') </script>";
+                if($count > 0) {
+                    $row = $statement->fetch(PDO::FETCH_ASSOC);
+                    $_SESSION["userID"] = $row["fundee_id"];
+                }
             }
             else {
                 echo "<script> alert('Sorry, something went wrong') </script>";
-                header("location:project_info.php");
+                // header("location:project_info.php");
+                echo ("error: " . $dbase -> error);
             }
         }
     ?>

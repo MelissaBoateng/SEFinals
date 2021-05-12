@@ -56,13 +56,24 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <?php
+                            include_once "includes/connection.php";
+                            $conn = new Database();
+                            $dbase = $conn->connect();
+
+                            $query = "SELECT project_name, capital FROM project WHERE fundee_id = fundee_id;";
+                            $execute = $dbase->query($query);
+                            if($execute){
+                                
+                        ?>
                         <tr>
                             <th scope="row">3/01/20</th>
-                            <td>Contact System</td>
+                            <td><?php echo $_SESSION["projectName"]; ?></td>
                             <td>Profit</td>
-                            <td>$300</td>
+                            <td>$<?php echo $_SESSION["balance"]; ?></td>
                             <td><a href="">Read More</a></td>
                         </tr>
+                        <?php } ?>
                         <tr>
                             <th scope="row">2/02/20</th>
                             <td>Online Payment</td>

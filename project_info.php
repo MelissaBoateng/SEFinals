@@ -30,7 +30,7 @@
         <label for="slider" class="form-label right">Cash Flows</label>
     </div>
     <div class="project-form bottom">
-        <form>
+        <form method="POST">
             <div>
                 <h4>Project Details</h4>
             </div>
@@ -54,23 +54,41 @@
             </div>
             <div class="form-group">
                 <label for="form_name">E-mail Address</label>
-                <input type="email" class="form-control item" id="description" name="email" placeholder="Kindly enter your email">
+                <input type="email" class="form-control item" id="email" name="email" placeholder="Kindly enter your email">
             </div>
             <div class="form-group">
                 <label for="form_name">Phone Number</label>
-                <input type="tel" class="form-control item" id="description" name="contact_n" placeholder="Kindly enter your phone number">
+                <input type="tel" class="form-control item" id="contact" name="contact_n" placeholder="Kindly enter your phone number">
             </div>
 
             <div class="form-group form-check">
                 <input type="checkbox" class="form-check-input" id="check" style="display: block;">
                 <label class="form-check-label" for="check">This project is currently ongoing</label>
             </div>
+
+            <div class="c_decisions">
+                <a class="back" href="mainpage.php">Go back</a>
+                <button type="submit" class="btn btn-block continue" name="continue">Continue</button>
+            </div>
         </form>
     </div>
-    <div class="decisions">
-        <a class="back" href="index.php">Go back</a>
-        <button type="submit" class="btn btn-block continue"><a href="cashflow.php">Continue</a></button>
-    </div>
+
+    <?php
+        if(isset($_POST["continue"])){
+            $project_name = $_POST["p_name"];
+            $industry = $_POST["industry"];
+            $description = $_POST["description"];
+            $contact = $_POST["contact_n"];
+
+            $_SESSION["project_name"] = $project_name;
+            $_SESSION["industry"] = $industry;
+            $_SESSION["description"] = $description;
+            $_SESSION["contact"] = $contact;
+
+            // header("location:cashflow.php");
+            echo "<script>window.location='cashflow.php'</script>";
+        }
+    ?>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
     <script src="assets/js/script.js"></script>
