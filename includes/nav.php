@@ -30,7 +30,12 @@
         </li>
         
         <li>
-            <?php echo $_SESSION["name"]; ?>
+            <?php
+                if(!empty($_SESSION["name"])){
+                    echo $_SESSION["name"];
+                }
+                echo "";
+            ?>
         </li>
         <li>
             <input type="checkbox" id="person-check">
