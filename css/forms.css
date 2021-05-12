@@ -128,6 +128,8 @@ form>button, form>button.btn:hover {
 
 .other {
     text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 .other a{
     text-decoration: none;

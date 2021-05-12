@@ -30,22 +30,9 @@
     </script>
 </head>
 
-<?php
-    session_start();
-
-    if(isset($_POST["c_continue"])) {
-        $_SESSION["incomeAmt"] = $_POST["incomeAmt"];
-        $_SESSION["payback"] = $_POST["payback"];
-
-        header("location:approved.php");
-        die();
-    }
-
-
-?>
-
 <body>
     <?php
+        session_start();
         
         $currentPage = "ideas";
         include("includes/nav.php");
@@ -94,7 +81,7 @@
                 </div>
 
                 <div class="form-group form-check" style="padding: 2% 8%;">
-                    <input type="checkbox" class="form-check-input" id="check" style="display: block; margin-left: -10px;" required>
+                    <input type="checkbox" class="form-check-input" id="check" name="check" style="display: block; margin-left: -10px;">
                     <label class="form-check-label" for="check" style="margin-left: 16px;">End Date Unkown or Indefinite</label>
                 </div>
             </div>
@@ -115,14 +102,25 @@
                     <input type="text" class="form-control item" id="payback" name="payback" placeholder="Payback period for the project" required>
                 </div>
             </div>
+
+            <div class="decisions">
+                <a class="back" href="project_info.php">Go back</a>
+                <button type="submit" class="btn continue" name="c_continue">Continue</button>
+            </div>
         </form>
     </div>
-    <div class="decisions">
-        <a class="back" href="project_info.php">Go back</a>
-        <form method="POST" style="margin: 0;">
-            <button type="submit" class="btn continue" name="c_continue">Continue</button>
-        </form>
-    </div>
+        
+    <?php
+        if(isset($_POST["c_continue"])) {
+            $income = $_POST["incomeAmt"];
+            $payback = $_POST["payback"];
+
+            $_SESSION["incomeAmt"] = $income;
+            $_SESSION["payback"] = $payback;
+
+            echo "<script>window.location='approved.php'</script>";
+        }
+    ?>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
     <script src="assets/js/script.js"></script>

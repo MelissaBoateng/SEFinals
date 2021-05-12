@@ -15,7 +15,7 @@
         include("includes/nav.php");
     ?>
     <div class="login-form">
-        <form>
+        <form method="POST">
             <div>
                 <h1 class="title">Know the value of your project before spending</h1>
             </div>
@@ -41,18 +41,17 @@
                 <label for="form_name">Confirm Password</label>
                 <input type="password" class="form-control item" id="c-password" name="c_password" placeholder="Confirm your new password">
             </div>
-            <form method="POST">
-                <div class="form-group signup-btn">
-                    <button type="button" class="btn btn-block signup" name="signUp">Get started</button>
-                </div>
-            </form>
-
+            
+            <div class="form-group signup-btn">
+                <button type="submit" class="btn btn-block signup" name="signUp">Get started</button>
+            </div>
             <div class="other">
                 <div>
                     Already have an account? 
-                    <a href="">Sign in</a>
+                    <a href="index.php">Sign in</a>
                 </div>
             </div>
+            
         </form>
     </div>
 
@@ -61,29 +60,29 @@
         $conn = new Database();
         $dbase = $conn->connect();
         
-        if(isset($_POST["signUp"])) {
+        if(array_key_exists("signUp", $_POST)) {
             $fname = $_POST["fname"];
             $lname = $_POST["lname"];
             $email = $_POST["email"];
             $password = $_POST["password"];
             $password2 = $_POST["c_password"];
 
-            if($password == $password2) {
+            if($password === $password2) {
                 $pass_encrypt = password_hash($password, PASSWORD_DEFAULT);
-                $query = "INSERT INTO fundee VALUES (null, '$email', '$fname', '$lname', '$pass_encrypt')";
+                $query = "INSERT INTO fundee VALUES (null, '$email', '$fname', '$lname', '$pass_encrypt', '')";
                 $execute = mysqli_query($dbase, $query);
 
                 if($execute) {
-                    echo "<script> alert('You signed up successfully') </script>";
-                    header("location:login.php");
+                    echo "<script> alert('You signed up successfully'); </script>";
+                    header("location:index.php");
                 }
                 else {
-                    echo "<script> alert('Sorry, something went wrong') </script>";
-                    header("location:signup.php");
+                    echo "<script> alert('Sorry, something went wrong'); </script>";
+                    echo ("this:" . $dbase->error);
                 }
             }
             else {
-                echo "<script> alert('Passwords do not match') </script>";
+                echo "<script> alert('Passwords do not match'); </script>";
             }
         }
     ?>

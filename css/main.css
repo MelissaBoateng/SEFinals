@@ -29,12 +29,13 @@ body {
 }
 
 .decisions {
-    padding: 0 22% 6%;
+    /* padding: 0 22% 6%; */
+    padding: 6% 0.5% 0;
 }
 .decisions a{
     cursor: pointer;
 }
-.decisions button > a, button.add > a {
+.decisions button > a, button.add > a, button.continue, button.continue:hover {
     color: white;
 }
 button.add > a:hover {

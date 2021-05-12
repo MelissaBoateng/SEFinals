@@ -12,6 +12,7 @@
 </head>
 <body>
     <?php
+        session_start();
         $currentPage = "ideas";
         include("includes/nav.php");
     ?>

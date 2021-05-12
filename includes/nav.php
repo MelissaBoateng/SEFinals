@@ -17,7 +17,7 @@
             </div>
         </label>
         <li>
-            <a href="index.php" class="<?php echo $currentPage == "home" ? "active" : "" ?>">Dashboard</a>
+            <a href="mainpage.php" class="<?php echo $currentPage == "home" ? "active" : "" ?>">Dashboard</a>
         </li>
         <li>
             <a href="project_info.php" class="<?php echo $currentPage == "ideas" ? "active" : "" ?>">Ideas</a>
@@ -27,6 +27,20 @@
         </li>
         <li>
             <a href="project_arch.php" class="<?php echo $currentPage == "tracker" ? "active" : "" ?>">Project Tracker</a>
+        </li>
+        
+        <li>
+            <?php echo $_SESSION["name"]; ?>
+        </li>
+        <li>
+            <input type="checkbox" id="person-check">
+            <label for="person-check">
+                <span style="padding: 0 20px;"><img class="person-icon" src="images/person-circle.svg"></span>
+            </label>
+            
+            <ul class="dropdown">
+                <li><a href="includes/logout.php" style="font-size: 15px;">LogOut</a></li>
+            </ul>
         </li>
     </ul>
 </nav>

@@ -12,6 +12,7 @@
 </head>
 <body>
     <?php
+        session_start();
         $currentPage = "tracker";
         include("includes/nav.php");
     ?>
