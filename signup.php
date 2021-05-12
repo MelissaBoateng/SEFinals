@@ -10,10 +10,6 @@
     <link rel="stylesheet" href="css/nav.css">
 </head>
 <body>
-    <?php
-        $currentPage = "";
-        include("includes/nav.php");
-    ?>
     <div class="login-form">
         <form method="POST">
             <div>
@@ -41,6 +37,17 @@
                 <label for="form_name">Confirm Password</label>
                 <input type="password" class="form-control item" id="c-password" name="c_password" placeholder="Confirm your new password">
             </div>
+
+            <div class="profile">
+                <div class="user">
+                    <input type="radio" name="type" value="Investor" id="investor" required>
+                    <label for="investor">Investor</label>
+                </div>
+                <div class="user">
+                    <input type="radio" name="type" value="Investee" id="investee" required>
+                    <label for="investee">Investee</label>
+                </div>
+            </div>
             
             <div class="form-group signup-btn">
                 <button type="submit" class="btn btn-block signup" name="signUp">Get started</button>
@@ -66,19 +73,45 @@
             $email = $_POST["email"];
             $password = $_POST["password"];
             $password2 = $_POST["c_password"];
+            $user = $_POST["type"];
 
             if($password === $password2) {
                 $pass_encrypt = password_hash($password, PASSWORD_DEFAULT);
-                $query = "INSERT INTO fundee VALUES (null, '$email', '$fname', '$lname', '$pass_encrypt', '')";
-                $execute = mysqli_query($dbase, $query);
 
-                if($execute) {
-                    echo "<script> alert('You signed up successfully'); </script>";
-                    header("location:index.php");
+                if($user == "Investor"){
+                    $query = "INSERT INTO investor VALUES (null, '$email', '$fname', '$lname', '$pass_encrypt', '')";
+                    $execute = mysqli_query($dbase, $query);
+
+                    if($execute) {
+                        // echo "<script> alert('You signed up successfully'); </script>";
+                        echo 
+                            "<div class='alert-success' style='top: 100px;'>
+                                <span> You signed up successfully </span>
+                            <div>";
+                        echo "<script>window.location='index.php'</script>";
+                    }
+                    else {
+                        echo "<script> alert('Sorry, something went wrong'); </script>";
+                        echo ("this:" . $dbase->error);
+                    }
                 }
-                else {
-                    echo "<script> alert('Sorry, something went wrong'); </script>";
-                    echo ("this:" . $dbase->error);
+                
+                else if($user == "Investee"){
+                    $query1 = "INSERT INTO fundee VALUES (null, '$email', '$fname', '$lname', '$pass_encrypt', '')";
+                    $execute1 = mysqli_query($dbase, $query1);
+
+                    if($execute1) {
+                        // echo "<script> alert('You signed up successfully'); </script>";
+                        echo 
+                            "<div class='alert-success' style='top: 100px;'>
+                                <span> You signed up successfully </span>
+                            <div>";
+                        header("location:index.php");
+                    }
+                    else {
+                        echo "<script> alert('Sorry, something went wrong'); </script>";
+                        echo ("this:" . $dbase->error);
+                    }
                 }
             }
             else {

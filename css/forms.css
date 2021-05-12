@@ -121,6 +121,18 @@ form>button, form>button.btn:hover {
     width: 40%;
 }
 
+.profile {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.profile input:hover {
+    cursor: pointer;
+}
+.user {
+    padding: 12px;
+}
+
 .login-btn, .signup-btn {
     display: flex;
     justify-content: center;
@@ -154,4 +166,26 @@ a.back {
 }
 a.back, button.continue > a {
     text-decoration: none;
+}
+
+/* css for alert messages */
+.alert-success{
+    top: 90%;
+    right: 0;
+    z-index: 1;
+    width: 300px;
+    height: 80px;
+    position: fixed;
+    font-size: 18px;
+    padding: 20px 40px;
+    background: rgb(130, 255, 130);
+    border-left: 8px solid green;
+    border-radius: 5px;
+    animation: alert-success 10s ease forwards;
+}
+/* specify animation code */
+@keyframes alert-success {
+    100% { /* when the animation is at 100% it should do the ff */
+        opacity: 0;
+    }
 }

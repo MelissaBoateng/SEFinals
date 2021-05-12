@@ -12,8 +12,6 @@
     <body>
         <?php
             session_start();
-            $currentPage = "";
-            include("includes/nav.php");
         ?>
         <div class="login-form">
             <form method="POST">
@@ -55,11 +53,8 @@
                 $email = $_POST["email"];
                 $password = $_POST["password"];
 
-                if(empty($email)) {
-                    echo "<script> alert('Email is required'); </script>";
-                }
-                else if(empty($password)) {
-                    echo "<script> alert('Password is required'); </script>";
+                if(empty($email) || empty($password)) {
+                    echo "<script> alert('All fields are required'); </script>";
                 }
                 else{
                     $query = "SELECT * FROM fundee where email = '$email'";
@@ -79,6 +74,28 @@
                             echo "<script> alert('Your password may be incorrect'); </script>";
                         }
                     }
+
+                    $query1 = "SELECT * FROM investor WHERE email = '$email'";
+                    $execute1 = mysqli_query($dbase, $query);
+                    $investor_row = mysqli_fetch_array($execute);
+
+                    if($investor_row) {
+                        $stored_p = $investor_row["password"];
+                        $decrypt_pass = password_verify($password, $stored_p);
+
+                        if($decrypt_pass) {
+                            echo 
+                                "<div class='alert-success' style='top: 100px;'>
+                                    <span> Successful logIn </span>
+                                <div>";
+                            $_SESSION["name"] = $email;
+                            header("location:mainpage.php");
+                        }
+                        else {
+                            echo "<script> alert('Your password may be incorrect'); </script>";
+                        }
+                    }
+
                     else {
                         echo "<script> alert('You don\'t have an account with us'); </script>";
                     }
