@@ -70,6 +70,16 @@ CREATE TABLE `industry` (
   `net_balance` int(40) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `industry`
+--
+
+INSERT INTO `industry` (`industry_id`, `industry_type`, `date`, `status`, `net_balance`) VALUES
+(1, 'Agriculture', '2021-01-14', 'Profit', 300),
+(2, 'Ecommerce', '2021-02-15', 'Profit', 1000),
+(3, 'I.o.T', '2021-01-20', 'Loss', -500),
+(4, 'Healthcare', '2021-03-20', 'Profit', 10000);
+
 -- --------------------------------------------------------
 
 --
@@ -81,8 +91,7 @@ CREATE TABLE `investor` (
   `investor_email` varchar(250) DEFAULT NULL,
   `Fname` varchar(250) DEFAULT NULL,
   `lname` varchar(250) DEFAULT NULL,
-  `password` varchar(550) NOT NULL,
-  `country_id` int(11) NOT NULL
+  `password` varchar(550) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
