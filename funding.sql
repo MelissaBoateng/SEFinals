@@ -22,6 +22,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `funding`
 --
+DROP database IF EXISTS funding;
 CREATE database funding;
 use funding;
 -- --------------------------------------------------------
@@ -79,6 +80,71 @@ INSERT INTO `industry` (`industry_id`, `industry_type`, `date`, `status`, `net_b
 (2, 'Ecommerce', '2021-02-15', 'Profit', 1000),
 (3, 'I.o.T', '2021-01-20', 'Loss', -500),
 (4, 'Healthcare', '2021-03-20', 'Profit', 10000);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table Agriculture
+--
+
+CREATE TABLE Agriculture (
+  `agric_id` int(11) NOT NULL,
+  `firm_name` varchar(30) NOT NULL,
+  `date` date NOT NULL,
+  `status` varchar(30) DEFAULT NULL,
+  `net_balance` int(40) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+--
+-- Dumping data for table agriculture
+--
+
+INSERT INTO Agriculture (`agric_id`, `firm_name`, `date`, `status`, `net_balance`) VALUES
+(1, 'African farmers M.', '2021-01-14', 'Profit', 300),
+(2, 'Knockknock market', '2021-02-15', 'Profit', 1000),
+(3, 'Kinafarm', '2021-01-20', 'Loss', -100),
+(4, 'Pokuculture', '2021-03-20', 'Profit', 1000);
+
+
+--
+-- Table structure for table Ecommerce
+--
+
+CREATE TABLE Ecommerce (
+  `ecommerce_id` int(11) NOT NULL,
+  `Name` varchar(30) NOT NULL,
+  `date` date NOT NULL,
+  `status` varchar(30) DEFAULT NULL,
+  `net_balance` int(40) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+--
+-- Table structure for table I.o.T
+--
+
+CREATE TABLE  IoT (
+  `iot_id` int(11) NOT NULL,
+  `Name` varchar(30) NOT NULL,
+  `date` date NOT NULL,
+  `status` varchar(30) DEFAULT NULL,
+  `net_balance` int(40) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+--
+-- Table structure for table Healthcare
+--
+
+CREATE TABLE Healthcare (
+  `health_id` int(11) NOT NULL,
+  `Name` varchar(30) NOT NULL,
+  `date` date NOT NULL,
+  `status` varchar(30) DEFAULT NULL,
+  `net_balance` int(40) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 
 -- --------------------------------------------------------
 
