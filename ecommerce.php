@@ -19,7 +19,7 @@
         $conn = new Database();
         $dbase = $conn->connect();
 
-        $sql = "SELECT * FROM `Ecommerce`";
+        $sql = "SELECT * FROM `ecommerce`";
         $result = $dbase->query($sql);
 
     echo '<main>
@@ -42,10 +42,10 @@
                         <div class="row" style="padding: 0 5%;">
                             <p>Total</p>
                             <p>$26,300</p>
-                        </div>
+                        </div>'?>
                         <div class="form-group add-btn">
-                            <button type="submit" class="btn btn-block add">Add project</button>
-                        </div>
+                            <button type="submit" class="btn btn-block add"><a href="project_info.php">Add project</a></button>
+                        </div><?php echo '
                     </div>
                 </div>
 

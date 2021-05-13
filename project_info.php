@@ -79,11 +79,13 @@
             $industry = $_POST["industry"];
             $description = $_POST["description"];
             $contact = $_POST["contact_n"];
+            $email = $_POST["email"];
 
             $_SESSION["project_name"] = $project_name;
             $_SESSION["industry"] = $industry;
             $_SESSION["description"] = $description;
             $_SESSION["contact"] = $contact;
+            $_SESSION["email"] = $email;
 
             // header("location:cashflow.php");
             echo "<script>window.location='cashflow.php'</script>";

@@ -77,6 +77,7 @@
                         if($decrypt_pass) {
                             echo "<script> alert('Successful logIn'); </script>";
                             $_SESSION["name"] = $email;
+                            $_SESSION["userID"] = $user_row["fundee_id"];
                             header("location:mainpage.php");
                         }
                         else {
@@ -100,6 +101,7 @@
                                     <span> Successful logIn </span>
                                 <div>";
                             $_SESSION["name"] = $email;
+                            $_SESSION["investorID"] = $investor_row["investor_id"];
                             header("location:mainpage.php");
                         }
                         else {

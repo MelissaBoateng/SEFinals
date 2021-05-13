@@ -3,12 +3,10 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 12, 2021 at 02:34 PM
+-- Generation Time: May 12, 2021 at 11:47 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
-SET FOREIGN_KEY_CHECKS=0;
-SET GLOBAL FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
@@ -22,9 +20,31 @@ SET time_zone = "+00:00";
 --
 -- Database: `funding`
 --
-DROP database IF EXISTS funding;
-CREATE database funding;
-use funding;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `agriculture`
+--
+
+CREATE TABLE `agriculture` (
+  `agric_id` int(11) NOT NULL,
+  `firm_name` varchar(30) NOT NULL,
+  `date` date NOT NULL,
+  `status` varchar(30) DEFAULT NULL,
+  `net_balance` int(40) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `agriculture`
+--
+
+INSERT INTO `agriculture` (`agric_id`, `firm_name`, `date`, `status`, `net_balance`) VALUES
+(1, 'African farmers M.', '2021-01-14', 'Profit', 300),
+(2, 'Knockknock market', '2021-02-15', 'Profit', 1000),
+(3, 'Kinafarm', '2021-01-20', 'Loss', -100),
+(4, 'Pokuculture', '2021-03-20', 'Profit', 1000);
+
 -- --------------------------------------------------------
 
 --
@@ -34,6 +54,20 @@ use funding;
 CREATE TABLE `country` (
   `country_id` int(11) NOT NULL,
   `country_name` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ecommerce`
+--
+
+CREATE TABLE `ecommerce` (
+  `ecommerce_id` int(11) NOT NULL,
+  `Name` varchar(30) NOT NULL,
+  `date` date NOT NULL,
+  `status` varchar(30) DEFAULT NULL,
+  `net_balance` int(40) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -56,6 +90,20 @@ CREATE TABLE `fundee` (
 
 INSERT INTO `fundee` (`fundee_id`, `email`, `Fname`, `lname`, `password`) VALUES
 (1, 'abenaOky06@gmail.com', 'Abena', 'Okyere', '$2y$10$G4yit9YxFk6z4Ss91Ls7COHNho0CwGf0q9GeeadINmDs/8Vcr718W');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `healthcare`
+--
+
+CREATE TABLE `healthcare` (
+  `health_id` int(11) NOT NULL,
+  `Name` varchar(30) NOT NULL,
+  `date` date NOT NULL,
+  `status` varchar(30) DEFAULT NULL,
+  `net_balance` int(40) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -84,71 +132,6 @@ INSERT INTO `industry` (`industry_id`, `industry_type`, `date`, `status`, `net_b
 -- --------------------------------------------------------
 
 --
--- Table structure for table Agriculture
---
-
-CREATE TABLE Agriculture (
-  `agric_id` int(11) NOT NULL,
-  `firm_name` varchar(30) NOT NULL,
-  `date` date NOT NULL,
-  `status` varchar(30) DEFAULT NULL,
-  `net_balance` int(40) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-
---
--- Dumping data for table agriculture
---
-
-INSERT INTO Agriculture (`agric_id`, `firm_name`, `date`, `status`, `net_balance`) VALUES
-(1, 'African farmers M.', '2021-01-14', 'Profit', 300),
-(2, 'Knockknock market', '2021-02-15', 'Profit', 1000),
-(3, 'Kinafarm', '2021-01-20', 'Loss', -100),
-(4, 'Pokuculture', '2021-03-20', 'Profit', 1000);
-
-
---
--- Table structure for table Ecommerce
---
-
-CREATE TABLE Ecommerce (
-  `ecommerce_id` int(11) NOT NULL,
-  `Name` varchar(30) NOT NULL,
-  `date` date NOT NULL,
-  `status` varchar(30) DEFAULT NULL,
-  `net_balance` int(40) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-
---
--- Table structure for table I.o.T
---
-
-CREATE TABLE  IoT (
-  `iot_id` int(11) NOT NULL,
-  `Name` varchar(30) NOT NULL,
-  `date` date NOT NULL,
-  `status` varchar(30) DEFAULT NULL,
-  `net_balance` int(40) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-
---
--- Table structure for table Healthcare
---
-
-CREATE TABLE Healthcare (
-  `health_id` int(11) NOT NULL,
-  `Name` varchar(30) NOT NULL,
-  `date` date NOT NULL,
-  `status` varchar(30) DEFAULT NULL,
-  `net_balance` int(40) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `investor`
 --
 
@@ -163,6 +146,20 @@ CREATE TABLE `investor` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `iot`
+--
+
+CREATE TABLE `iot` (
+  `iot_id` int(11) NOT NULL,
+  `Name` varchar(30) NOT NULL,
+  `date` date NOT NULL,
+  `status` varchar(30) DEFAULT NULL,
+  `net_balance` int(40) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `project`
 --
 
@@ -171,11 +168,10 @@ CREATE TABLE `project` (
   `project_name` varchar(250) DEFAULT NULL,
   `industry_type` varchar(255) DEFAULT NULL,
   `p_description` tinytext DEFAULT NULL,
-  `date` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `date` date NOT NULL,
   `status` varchar(250) DEFAULT NULL,
   `capital` int(40) DEFAULT NULL,
   `payback_p` varchar(25) DEFAULT NULL,
-  `fundee_id` int(11) NOT NULL,
   `country_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -228,8 +224,7 @@ ALTER TABLE `investor`
 -- Indexes for table `project`
 --
 ALTER TABLE `project`
-  ADD PRIMARY KEY (`project_id`),
-  ADD KEY `fundee_id_fk` (`fundee_id`);
+  ADD PRIMARY KEY (`project_id`);
 
 --
 -- Indexes for table `project_tracker`
@@ -259,7 +254,7 @@ ALTER TABLE `fundee`
 -- AUTO_INCREMENT for table `industry`
 --
 ALTER TABLE `industry`
-  MODIFY `industry_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `industry_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `investor`
@@ -278,20 +273,12 @@ ALTER TABLE `project`
 --
 
 --
--- Constraints for table `project`
---
-ALTER TABLE `project`
-  ADD CONSTRAINT `project_ibfk_1` FOREIGN KEY (`fundee_id`) REFERENCES `fundee` (`fundee_id`);
-
---
 -- Constraints for table `project_tracker`
 --
 ALTER TABLE `project_tracker`
   ADD CONSTRAINT `project_tracker_ibfk_1` FOREIGN KEY (`project_id`) REFERENCES `project` (`project_id`),
   ADD CONSTRAINT `project_tracker_ibfk_2` FOREIGN KEY (`fundee_id`) REFERENCES `fundee` (`fundee_id`),
   ADD CONSTRAINT `project_tracker_ibfk_3` FOREIGN KEY (`investor_id`) REFERENCES `investor` (`investor_id`);
-SET FOREIGN_KEY_CHECKS=1;
-SET GLOBAL FOREIGN_KEY_CHECKS=1;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
